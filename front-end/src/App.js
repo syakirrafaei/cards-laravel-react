@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Form from "./Form";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <div className="container mx-auto py-10">
+                <div className="flex flex-row flex-wrap">
+                    <div className="w-full mb-20">
+                        <h1 className="text-2xl text-center font-bold">
+                            Card Game
+                        </h1>
+                    </div>
+                    <div className="w-full text-center">
+                        <Form />
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
 
 export default App;
