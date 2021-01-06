@@ -18,6 +18,7 @@ class CardController extends Controller
         //Initialize variables
         $cards = [];
         $count = 0;
+        $round = 1;
         $suits = Suit::select('name', 'value')->get();
         $numbers = Number::select('name', 'value')->get();
         $players_data = [];
@@ -42,15 +43,20 @@ class CardController extends Controller
                     //Get the value of cards based on the random number and store in players data
                     $cards_value = Arr::get($cards, $count);
 
-                    $players_card[$i][] = $cards_value;
+                    if ($cards_value == null) {
+                        $cards_value = 'No more cards';
+                    }
+                    $players_card[$round][$i] = $cards_value;
 
                     //Remove the random no from the deck of cards
                     Arr::forget($cards, $count);
                     $count++;
                 }
+                $round++;
             }
+            return response()->json($players_card);
         } else {
-            return 'false';
+            return response()->json(false);
         }
     }
 
