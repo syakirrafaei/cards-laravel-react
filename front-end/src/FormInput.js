@@ -1,13 +1,12 @@
 import React from "react";
+import api from "./api";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const FormInput = () => {
+const FormInput = (props) => {
     const [values, setValues] = useState({
         players: "",
     });
-
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -15,12 +14,12 @@ const FormInput = () => {
             ...values,
             [name]: value,
         });
-        console.log(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmit(true);
+        let res = await api.get(`/start/${values.players}`);
+        props.onchange(res.data);
     };
     return (
         <div>
