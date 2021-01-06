@@ -2,16 +2,18 @@ import React from "react";
 
 function FormOutput(props) {
     console.log(props.data);
-
     const data =
-        Object.keys(props.data).length > 0 ? (
+        Object.keys(props.data).length > 0 && props.data !== false ? (
             Object.entries(props.data).map(([key, value]) => {
                 return (
                     <div>
-                        <div className="mt-10 font-semibold text-lg">
-                            Round {key}
-                        </div>
-                        <div key={key} className="block bg-green-100 my-4">
+                        <div
+                            key={key}
+                            className="block bg-green-100 my-4 rounded-lg p-1 shadow"
+                        >
+                            <div className="font-semibold text-lg">
+                                Round {key}
+                            </div>
                             {Object.entries(value).map(([k, v]) => {
                                 return (
                                     <div key={k} className="inline-block mr-3">
@@ -23,8 +25,10 @@ function FormOutput(props) {
                     </div>
                 );
             })
+        ) : props.data === false ? (
+            <span className="text-red-600">Please input number</span>
         ) : (
-            <span>Please input the number of players.</span>
+            <span>Please fill in the number of players.</span>
         );
 
     return (
