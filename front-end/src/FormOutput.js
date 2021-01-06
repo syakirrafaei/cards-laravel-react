@@ -26,7 +26,7 @@ function FormOutput(props) {
                 );
             })
         ) : props.data === false ? (
-            <span className="text-red-600">Please input number</span>
+            <span className="text-red-600">Please input a number</span>
         ) : (
             <span>Please fill in the number of players.</span>
         );
