@@ -1,16 +1,12 @@
 import React from "react";
 
 function FormOutput(props) {
-    console.log(props.data);
     const data =
         Object.keys(props.data).length > 0 && props.data !== false ? (
             Object.entries(props.data).map(([key, value]) => {
                 return (
-                    <div>
-                        <div
-                            key={key}
-                            className="block bg-green-100 my-4 rounded-lg p-1 shadow"
-                        >
+                    <div key={key}>
+                        <div className="block bg-green-100 my-4 rounded-lg p-1 shadow">
                             <div className="font-semibold text-lg">
                                 Round {key}
                             </div>
