@@ -15,28 +15,31 @@ class CardController extends Controller
     //Start the application logic
     public function start($input)
     {
-        //Initialize variables
-        $cards = [];
-        $count = 0;
-        $round = 1;
-        $suits = Suit::select('name', 'value')->get();
-        $numbers = Number::select('name', 'value')->get();
-        $players_data = [];
-
-
-        foreach ($suits as $suit) {
-            foreach ($numbers as $number) {
-                $cards[] = $suit->value . '-' . $number->value;
-            }
-        }
-
-        //Shuffle the cards
-        $cards = Arr::shuffle($cards);
-
-        //Check if the GET parameter is numeric
+        //Some validation
         $checkNumeric = $this->checkNumeric($input);
+        $checkLength = $this->checkLength($input);
 
-        if ($checkNumeric) {
+        if ($checkNumeric && $checkLength) {
+            //Initialize variables
+            $cards = [];
+            $count = 0;
+            $round = 1;
+            $suits = Suit::select('name', 'value')->get();
+            $numbers = Number::select('name', 'value')->get();
+            $players_data = [];
+
+
+            foreach ($suits as $suit) {
+                foreach ($numbers as $number) {
+                    $cards[] = $suit->value . '-' . $number->value;
+                }
+            }
+
+            //Shuffle the cards
+            $cards = Arr::shuffle($cards);
+
+
+
             while (count($cards) > 0) {
                 for ($i = 0; $i < $input; $i++) {
 
@@ -63,6 +66,15 @@ class CardController extends Controller
     public function checkNumeric($input)
     {
         if (is_numeric($input)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkLength($input)
+    {
+        if (strlen($input) < 5) {
             return true;
         } else {
             return false;
