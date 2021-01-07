@@ -9,8 +9,8 @@
 
 ### Commands to setup
 1. `cp .env.example .env` and insert the database credentials.
-3. `php artisan key:generate`
-2. `php artisan migrate --seed` to migrate the database and run seeders.
+2. `php artisan key:generate`
+3. `php artisan migrate --seed` to migrate the database and run seeders.
 
 
 ## front-end
@@ -20,5 +20,6 @@
 
 ### Commands to setup
 1. `npm install`
-2. `npm start` for development mode
-3. `npm run build` builds the app for production to the `build` folder.
+2.  Change the baseURL of the api at `front-end/src/api.js`
+3. `npm start` for development mode
+4. `npm run build` builds the app for production to the `build` folder.
